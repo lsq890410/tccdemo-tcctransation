@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="order_service"/>
+
+
+    <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
+
+    <dubbo:protocol accesslog="true" name="dubbo" port="30886"/>
+
+    <dubbo:service interface="org.tccdemo.tcctransation.pay.service.IPayService" ref="payService"/>
+    <dubbo:reference timeout="100000"
+		interface="org.tccdemo.tcctransation.inventory.service.IInventoryService"
+		id="inventoryService" retries="0" check="false" />
+</beans>
