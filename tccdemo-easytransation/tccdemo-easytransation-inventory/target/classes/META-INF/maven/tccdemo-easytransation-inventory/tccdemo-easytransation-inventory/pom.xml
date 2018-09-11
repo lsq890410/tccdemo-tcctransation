@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.yiqiniu.easytrans.demos</groupId>
+		<artifactId>rpcdubbo</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<groupId>tccdemo-easytransation-inventory</groupId>
+	<artifactId>tccdemo-easytransation-inventory</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>tccdemo-easytransation-inventory</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+
+	<dependency>
+			<groupId>com.yiqiniu.easytrans</groupId>
+			<artifactId>easytrans-starter</artifactId>
+			<exclusions>
+				<!-- did not use queue,so exclusive it,then it won't be initialed -->
+				<!-- 没有使用队列，因此将其排除，否则将会尝试初始化 -->
+				<exclusion>
+					<groupId>com.yiqiniu.easytrans</groupId>
+					<artifactId>easytrans-queue-kafka-starter</artifactId>
+				</exclusion>
+				<!-- did not use netflix-ribbon,so exclusive it,then it won't be initialed -->
+				<!-- 不适用Netflix ribbon，所以将其移除 -->
+				<exclusion>
+				    <groupId>com.yiqiniu.easytrans</groupId>
+        			<artifactId>easytrans-rpc-rest-ribbon-starter</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.yiqiniu.easytrans</groupId>
+			<artifactId>easytrans-rpc-dubbo-starter</artifactId>
+			<exclusions>
+				<!-- dubbo import a very old version spring , exclude it -->
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.yiqiniu.easytrans.demos</groupId>
+			<artifactId>rpcdubbo-wallet-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>tccdemo-easytransation-order</groupId>
+			<artifactId>tccdemo-easytransation-order-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>tccdemo-easytransation-inventory</groupId>
+			<artifactId>tccdemo-easytransation-inventory-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>tccdemo-easytransation-inventorysend</groupId>
+			<artifactId>tccdemo-easytransation-inventorysend-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>tccdemo-easytransation-pub</groupId>
+			<artifactId>tccdemo-easytransation-pub</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+</project>
